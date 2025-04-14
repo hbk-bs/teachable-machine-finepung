@@ -1,56 +1,86 @@
-let model, labelContainer, maxPredictions;
 
-// Modell und Teachable Machine laden
-async function init() {
-    const URL = "https://teachablemachine.withgoogle.com/models/Yyd6myV_4/"; // Ersetze dies mit dem Link zu deinem Teachable Machine Modell
-    const modelURL = URL + "model.json";
-    const metadataURL = URL + "metadata.json";
+  // Classifier Variable
+  let classifier;
+  // Model URL
+  let imageModelURL = 'https://teachablemachine.withgoogle.com/models/Yyd6myV_4/';
+  //@ts-nocheck
+// @ts-ignore
+let img = null;
+// @ts-ignore
 
-    // Lade das Modell und die Metadaten
-    model = await tmImage.load(modelURL, metadataURL);
-    maxPredictions = model.getTotalClasses();
 
-    labelContainer = document.getElementById("prediction");
 
-    console.log("Modell geladen.");
+
+let label = "Wähle ein Bild einer vermeintlichen Beere aus und erfahre was es botanisch gesehen ist";
+let labelElement;
+
+function preload() {
+	classifier = ml5.imageClassifier(imageModelURL + "model.json", ()=>{
+		console.log('model loaded')
+	});
 }
 
-// Bild anzeigen und Vorhersage machen
-async function displayImage(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+function setup() {
+	// Prevent default drag behaviors
+	window.addEventListener(
+		"dragover",
+		function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+		},
+		false
+	);
 
-    reader.onload = async function(e) {
-        const image = document.getElementById('imageDisplay');
-        image.src = e.target.result;
-        image.style.display = 'block'; // Zeigt das Bild an
+	window.addEventListener(
+		"drop",
+		function (e) {
+			e.preventDefault();
+			e.stopPropagation();
+		},
+		false
+	);
 
-        // Warten bis das Bild vollständig geladen ist
-        image.onload = async function() {
-            const predictions = await predict(image);
-            displayPrediction(predictions);
-        };
-    };
+	noCanvas();
 
-    if (file) {
-        reader.readAsDataURL(file);
-    }
+	
+
+	// Handle file input changes
+
+	const fileInput = select("#file");
+	if (fileInput) {
+		fileInput.changed(handleFileInput);
+	}
+
+	labelElement = select("#prediction");
+	labelElement.html(label);
+	textFont("system-ui");
 }
 
-// Bild vorhersagen
-async function predict(image) {
-    const predictions = await model.predict(image);
-    return predictions;
+function draw() {
 }
 
-// Vorhersage anzeigen
-function displayPrediction(predictions) {
-    // Sortiere nach Wahrscheinlichkeit (absteigend)
-    predictions.sort((a, b) => b.probability - a.probability);
-    const prediction = predictions[0];
 
-    labelContainer.innerHTML = `Vorhersage: ${prediction.className} mit ${Math.round(prediction.probability * 100)}%`;
+function handleFileInput(event) {
+	const file = event.target.files[0];
+	if (file && file.type.startsWith("image/")) {
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			img = createImg(e.target.result, "uploaded image");
+			img.parent('image-container')
+			classifyImage(img);
+		};
+		reader.readAsDataURL(file);
+	} else {
+		console.log("Not an image file selected!");
+	}
 }
 
-// Initialisierung
-init();
+function classifyImage(image) {
+	classifier.classify(image, gotResult);
+}
+
+function gotResult(results) {
+	console.log(results);
+	label = results[0].label;
+	labelElement.html(label);
+}
