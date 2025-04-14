@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bild hochladen und klassifizieren</title>
+    <title>Ist das eine Beere?</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,18 +31,17 @@
     </style>
 </head>
 <body>
-    <h1>Bild hochladen und klassifizieren</h1>
+    <h1>🫐🍓Ist das eine Beere?🍓🫐</h1>
     <input type="file" id="imageUpload" accept="image/*" onchange="displayImage(event)">
     <div id="imageContainer">
         <img id="imageDisplay" alt="Das hochgeladene Bild">
     </div>
     <div id="prediction"></div>
 
-    <!-- Teachable Machine TensorFlow.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image"></script>
 
-    <!-- Verlinkung der externen JavaScript-Datei -->
+
     <script src="index.js"></script>
 </body>
 </html>
