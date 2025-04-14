@@ -1,55 +1,56 @@
-// Classifier Variable
-let classifier;
-// Model URL
-// HERE
-let imageModelURL = 'https://teachablemachine.withgoogle.com/models/BcyZAjKwm/';
+let model, labelContainer, maxPredictions;
 
-// Video
-let video;
-let flippedVideo;
-// To store the classification
-let label = '';
+// Modell und Teachable Machine laden
+async function init() {
+    const URL = "https://teachablemachine.withgoogle.com/models/Yyd6myV_4/"; // Ersetze dies mit dem Link zu deinem Teachable Machine Modell
+    const modelURL = URL + "model.json";
+    const metadataURL = URL + "metadata.json";
 
-// Load the model first
-function preload() {
-	classifier = ml5.imageClassifier(imageModelURL + 'model.json');
-	console.log(classifier);
+    // Lade das Modell und die Metadaten
+    model = await tmImage.load(modelURL, metadataURL);
+    maxPredictions = model.getTotalClasses();
+
+    labelContainer = document.getElementById("prediction");
+
+    console.log("Modell geladen.");
 }
 
-function setup() {
-	createCanvas(320, 260);
-	// Create the video
-	video = createCapture(VIDEO);
-	video.size(320, 240);
-	video.hide();
+// Bild anzeigen und Vorhersage machen
+async function displayImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
 
-	// Start classifying
-	classifyVideo();
+    reader.onload = async function(e) {
+        const image = document.getElementById('imageDisplay');
+        image.src = e.target.result;
+        image.style.display = 'block'; // Zeigt das Bild an
+
+        // Warten bis das Bild vollständig geladen ist
+        image.onload = async function() {
+            const predictions = await predict(image);
+            displayPrediction(predictions);
+        };
+    };
+
+    if (file) {
+        reader.readAsDataURL(file);
+    }
 }
 
-function draw() {
-	background(0);
-	// Draw the video
-	image(video, 0, 0);
-
-	// Draw the label
-	fill(255);
-	textSize(16);
-	textAlign(CENTER);
-	text(label, width / 2, height - 4);
+// Bild vorhersagen
+async function predict(image) {
+    const predictions = await model.predict(image);
+    return predictions;
 }
 
-// Get a prediction for the current video frame
-function classifyVideo() {
-	classifier.classify(video, gotResult);
+// Vorhersage anzeigen
+function displayPrediction(predictions) {
+    // Sortiere nach Wahrscheinlichkeit (absteigend)
+    predictions.sort((a, b) => b.probability - a.probability);
+    const prediction = predictions[0];
+
+    labelContainer.innerHTML = `Vorhersage: ${prediction.className} mit ${Math.round(prediction.probability * 100)}%`;
 }
 
-// When we get a result
-function gotResult(results) {
-	console.log(results);
-	// The results are in an array ordered by confidence.
-	// console.log(results[0]);
-	label = results[0].label;
-	// Classifiy again!
-	classifyVideo();
-}
+// Initialisierung
+init();
