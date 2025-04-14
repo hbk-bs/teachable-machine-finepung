@@ -11,7 +11,7 @@ let img = null;
 
 
 
-let label = "Wähle ein Bild einer vermeintlichen Beere aus und erfahre was es botanisch gesehen ist";
+let label = "🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓";
 let labelElement;
 
 function preload() {
