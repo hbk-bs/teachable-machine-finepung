@@ -110,6 +110,10 @@ function gotResult(results) {
     label = results[0].label;
     labelElement.html(label);
     
+    console.log("Label detected:", results[0].label);
+    console.log("Label type:", typeof results[0].label);
+    console.log("Label length:", results[0].label.length);
+    
     const existingMessage = document.querySelector('.upload-message');
     if (existingMessage) {
         existingMessage.remove();
@@ -131,6 +135,9 @@ function gotResult(results) {
             break;
         case 'Hier geht es um Beeren':
             messageText = 'Frechdachs!';
+            break;
+		case 'Das ist ein BÄR':
+            messageText = '🐻🐻🐻';
             break;
         default:
             messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal! 🤔';
