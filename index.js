@@ -137,7 +137,7 @@ function gotResult(results) {
             messageText = 'Frechdachs!';
             break;
 		case 'Das ist ein BÄR':
-            messageText = '🐻🐻🐻';
+            messageText = 'Obwohl auch in der Welt der Bären verschiedene Kategorien existieren, ist es wichtig zu beachten, dass Bären keine Beeren sind. Bären sind große, kräftige Säugetiere, die zur Familie der Ursidae gehören. Sie sind bekannt für ihre Stärke und Anpassungsfähigkeit an verschiedene Lebensräume. Im Gegensatz dazu sind Beeren kleine, saftige Früchte, die von Pflanzen produziert werden. Es ist wichtig, diese beiden Begriffe nicht zu verwechseln.';
             break;
         default:
             messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal! 🤔';
