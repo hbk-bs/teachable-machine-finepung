@@ -6,7 +6,8 @@
     <title>Ist das eine Beere?</title>
     <style>
       *{
-        background-color: rgb(240, 216, 230);
+        background-color: rgb(246, 159, 177);
+        color: #55022c; 
       }
 
         body {
@@ -16,9 +17,39 @@
         }
 
         #image-container {
-            margin-top: 20px;
-            max-width: 100%;
-            max-height: 80vh;
+            margin: 20px auto;
+            width: 320px;
+            height: 320px;
+            border: 3px solid #5282fbcc;
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            position: relative;
+        }
+
+        #image-container.dragover {
+            border-style: dashed;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        #image-container::before {
+            content: 'Drop image here or click to upload';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #666;
+            background-color: transparent;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Hide the text when container has an image */
+        #image-container.has-image::before {
+            display: none;
         }
 
         input[type="file"] {
@@ -26,19 +57,28 @@
             font-size: 16px;
         }
 
+        #file {
+            display: none;  /* Hide the default file input */
+        }
+
         #prediction {
             margin-top: 20px;
             font-size: 20px;
             font-weight: bold;
+            color: #55022c; 
         }
-        img{
-            max-width: 100%;
+        
+        img {
+            max-width: 300px;
+            max-height: 300px;
+            object-fit: contain;
+            background-color: white;
         }
     </style>
 </head>
 <body>
     <h1>🫐🍓Ist das eine Beere?🍓🫐</h1>
-    <input id="file" type="file"  accept="image/*">
+    <input id="file" type="file"  accept="image/*" style="display: none;">
     <div id="image-container">
     </div>
     <div id="prediction"></div>
