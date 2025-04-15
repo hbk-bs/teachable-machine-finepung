@@ -7,7 +7,7 @@ let imageModelURL = 'https://teachablemachine.withgoogle.com/models/Yyd6myV_4/';
 let img = null;
 // @ts-ignore
 
-let label = "🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓";
+let label = "🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓🫐🍓";
 let labelElement;
 
 function preload() {
@@ -22,15 +22,12 @@ function setup() {
 	const imageContainer = document.getElementById('image-container');
 	const fileInput = select("#file");
 
-	// Make the container clickable to trigger file input
 	imageContainer.addEventListener('click', () => {
 		fileInput.elt.click();
 	});
 
-	// Add cursor pointer style
 	imageContainer.style.cursor = 'pointer';
 
-	// Handle drag events
 	imageContainer.addEventListener('dragover', (e) => {
 		e.preventDefault();
 		e.stopPropagation();
@@ -69,7 +66,7 @@ function draw() {
 function handleFileInput(event) {
 	const file = event.target.files[0];
 	if (file && file.type.startsWith("image/")) {
-		// Remove previous image if it exists
+		
 		if (img) {
 			img.remove();
 		}
@@ -78,7 +75,7 @@ function handleFileInput(event) {
 		reader.onload = function (e) {
 			img = createImg(e.target.result, "uploaded image");
 			img.parent('image-container');
-			// Add the has-image class when image is loaded
+			
 			document.getElementById('image-container').classList.add('has-image');
 			classifyImage(img);
 		};
@@ -97,7 +94,7 @@ function handleDroppedFile(file) {
 	reader.onload = function (e) {
 		img = createImg(e.target.result, "uploaded image");
 		img.parent('image-container');
-		// Add the has-image class when image is loaded
+		
 		document.getElementById('image-container').classList.add('has-image');
 		classifyImage(img);
 	};
