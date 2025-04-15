@@ -106,7 +106,38 @@ function classifyImage(image) {
 }
 
 function gotResult(results) {
-	console.log(results);
-	label = results[0].label;
-	labelElement.html(label);
+    console.log(results);
+    label = results[0].label;
+    labelElement.html(label);
+    
+    const existingMessage = document.querySelector('.upload-message');
+    if (existingMessage) {
+        existingMessage.remove();
+    }
+    
+    let messageText;
+    switch(results[0].label) {
+        case 'Sammelnussfrüchte':
+            messageText = 'Hier bei handelt es sich botanisch gesehen um eine Sammelnussfrucht. Sammelnussfrüchte bestehen aus mehreren kleinen Nussfrüchten, die aus einer einzelnen Blüte entstehen. Ein typisches Beispiel für Sammelnussfrüchte ist die Erdbeergewächse wie Hagebutten, bei der viele kleine Nüsschen zusammen auf einem Fruchtboden sitzen.';
+            break;
+        case 'Ja das ist tatsächlich eine Beere':
+            messageText = 'Botanisch gilt als Beere eine Frucht, die aus einem ­einzigen oder mehreren verwachsenen Fruchtblättern hervorgegangen ist und mehrere Samen mit ihrem ­Fruchtfleisch ein­hüllt. Es besteht aus drei Schichten: der Außenhaut, dem fleischigen Mittel­teil und dem oft etwas dunkleren In­nenteil, der die Samen umgibt. Dazu gehören Heidelbeeren, Holunder oder Trauben. Aber auch Bananen und Gurken gelten im botanischen Sinne als Beere. ';
+            break;
+        case 'Sammelsteinfrüchte':
+            messageText = 'Die Sammelsteinfrucht ist eine spezielle Fruchtform, bei der sich entlang der vorgewölbten Blütenachse aus den zahlreichen Fruchtblättern je eine kleine Steinfrucht entwickelt. Diese einzelnen Steinfrüchte haften untereinander zusammen und bilden dadurch die Sammelsteinfrucht, die sich bei Fruchtreife in der Regel als Gesamtes ablöst. Himbeeren und Brombeeren sind bekannte Sammelsteinfrüchte.';
+            break;
+        case 'Stachelbeergewächse':
+            messageText = 'Ein klassisches Stachelbeergewächs! 🫐 Zur Familie der Ribisel.';
+            break;
+        case 'Hier geht es um Beeren':
+            messageText = 'Genau! Hier geht es um die Klassifizierung von Beeren! 🍓';
+            break;
+        default:
+            messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal! 🤔';
+    }
+    
+    const uploadMessage = document.createElement('div');
+    uploadMessage.className = 'upload-message';
+    uploadMessage.textContent = messageText;
+    document.getElementById('prediction').after(uploadMessage);
 }
