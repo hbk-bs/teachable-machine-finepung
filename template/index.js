@@ -127,10 +127,10 @@ function gotResult(results) {
             messageText = 'Die Sammelsteinfrucht ist eine spezielle Fruchtform, bei der sich entlang der vorgewölbten Blütenachse aus den zahlreichen Fruchtblättern je eine kleine Steinfrucht entwickelt. Diese einzelnen Steinfrüchte haften untereinander zusammen und bilden dadurch die Sammelsteinfrucht, die sich bei Fruchtreife in der Regel als Gesamtes ablöst. Himbeeren und Brombeeren sind bekannte Sammelsteinfrüchte.';
             break;
         case 'Stachelbeergewächse':
-            messageText = 'Ein klassisches Stachelbeergewächs! 🫐 Zur Familie der Ribisel.';
+            messageText = 'Die Stachelbeergewächse bilden eine eigene botanische Familie, die sich durch spezifische Merkmale von anderen Beerenpflanzen unterscheidet. Was sie besonders kennzeichnet, ist ihre Kombination aus strauchigem Wuchs und charakteristischen Blüten mit einem unterständigen Fruchtknoten, aus dem sich die für sie typischen Beerenfrüchte entwickeln. Die Namensgeberin die Stachelbeere aber auch die Johannisbeeren gehören in diese Kategorie.';
             break;
         case 'Hier geht es um Beeren':
-            messageText = 'Genau! Hier geht es um die Klassifizierung von Beeren! 🍓';
+            messageText = 'Frechdachs!';
             break;
         default:
             messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal! 🤔';
