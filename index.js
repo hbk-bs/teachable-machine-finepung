@@ -134,13 +134,13 @@ function gotResult(results) {
             messageText = 'Die Stachelbeergewächse bilden eine eigene botanische Familie, die sich durch spezifische Merkmale von anderen Beerenpflanzen unterscheidet. Was sie besonders kennzeichnet, ist ihre Kombination aus strauchigem Wuchs und charakteristischen Blüten mit einem unterständigen Fruchtknoten, aus dem sich die für sie typischen Beerenfrüchte entwickeln. Die Namensgeberin die Stachelbeere aber auch die Johannisbeeren gehören in diese Kategorie.';
             break;
         case 'Hier geht es um Beeren':
-            messageText = 'Frechdachs!';
+            messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal!';
             break;
 		case 'Das ist ein BÄR':
             messageText = 'Obwohl auch in der Welt der Bären verschiedene Kategorien existieren, ist es wichtig zu beachten, dass Bären keine Beeren sind. Bären sind große, kräftige Säugetiere, die zur Familie der Ursidae gehören. Sie sind bekannt für ihre Stärke und Anpassungsfähigkeit an verschiedene Lebensräume. Im Gegensatz dazu sind Beeren kleine, saftige Früchte, die von Pflanzen produziert werden. Es ist wichtig, diese beiden Begriffe nicht zu verwechseln.';
             break;
         default:
-            messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal! 🤔';
+            messageText = 'Hmm, da bin ich mir nicht sicher. Versuche es nochmal!';
     }
     
     const uploadMessage = document.createElement('div');
