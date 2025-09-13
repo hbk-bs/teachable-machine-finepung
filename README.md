@@ -41,7 +41,4 @@ Die Website besteht hauptsächlich aus HTML und JavaScript und ist folgendermaß
 _Ein Projekt von Josefine Unger @ HBK Braunschweig 2025_
 
 
----
 
-**Fragen oder Feedback?**  
-Gerne über Issues oder Pull Requests!
