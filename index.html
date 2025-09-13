@@ -118,9 +118,56 @@
         .source-code-link:hover {
             opacity: 0.9;
         }
+
+        #backlink-blog {
+            --color-accent: rgb(231, 136, 155);
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            border: 1px dashed #5282fbcc;
+            background-color: rgb(231, 136, 155);
+            padding: 8px;
+            cursor: pointer;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            transform: rotate(-2deg) scale(0.9);
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+            font-family: 'Canterbury', cursive;
+            z-index: 10;
+        }
+        
+        #backlink-blog:hover {
+            transform: rotate(2deg) scale(1);
+        }
+        
+        #backlink-blog a {
+            text-decoration: none;
+            color: inherit;
+            background-image: linear-gradient(to right,
+                                var(--color-accent) 0%,
+                                var(--color-accent) 100%);
+            background-size: 0% 100%;
+            background-position: left center;
+            background-repeat: no-repeat;
+            transition: background-size 0.2s ease-in-out;
+            padding: 0.5rem;
+            display: inline-block;
+        }
+        
+        #backlink-blog a:hover {
+            background-size: 100% 100%;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
+    <div id="backlink-blog">
+        <a href="https://hbk-bs.github.io/documentation-2025-finepung/">Zurück zur Dokumentation</a>
+    </div>
+    
     <h1>🫐🍓Ist das eine Beere?🍓🫐</h1>
     <input id="file" type="file"  accept="image/*" style="display: none;">
     <div id="image-container">
